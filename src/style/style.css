@@ -1,4 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Martian+Mono:wght@100;200;300;400;500;600;700;800&family=Righteous&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 body {
-  background-color: black;
-  background-color: wheat;
+  padding: 0;
+  margin: 0;
+  font-family: "Martian Mono", monospace;
+}
+
+.navbar {
+  display: flex;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  padding: 1% 0%;
+  justify-content: space-evenly;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(37, 33, 33);
+  filter: drop-shadow(0 0 0.75rem rgb(34, 33, 33));
+}
+
+.logo-img {
+  height: 70px;
+}
+
+.navlinks ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.navlinks ul li {
+  display: block;
+  padding: 10px;
+}
+
+.navlinks ul li a {
+  text-decoration: none;
+  color: bisque;
+}
+
+.navlinks ul li a:hover {
+  position: relative;
+  bottom: 2px;
+  text-decoration: none;
+  color: rgb(255, 152, 27);
+}
+
+.navlinks ul li a:active {
+  text-decoration: none;
+  color: rgb(228, 228, 228);
+}
+
+.togglebtn {
+  position: absolute;
+  right: 2rem;
+  top: 0.7rem;
+  display: none;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 30px;
+  width: 30px;
+}
+
+.togglebtn .bars {
+  background-color: beige;
+  border-radius: 5px;
+  width: 100%;
+  height: 3px;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    width: 100%;
+    padding: 1% 1%;
+    justify-content: space-evenly;
+    text-align: start;
+    align-items: start;
+  }
+
+  .navlinks {
+    display: none;
+  }
+
+  .navlinks ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .togglebtn {
+    display: flex;
+  }
+
+  .navlinks.active {
+    display: block;
+  }
 }
