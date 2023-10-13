@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="./style/header.css" />
+    <link rel="stylesheet" href="style/popUpCard.css" />
     <link rel="stylesheet" href="./style/style.css" />
     <title>RESTURANT</title>
     <script defer="defer" src="bundle.js"></script>
@@ -10,7 +12,7 @@
   <body>
     <nav class="navbar">
       <div class="navbrand">
-        <img class="logo-img" src="./icons/logo.png" alt="" />
+        <img class="logo-img" src="./asset/logo.png" alt="Logo" />
       </div>
       <a href="#" class="togglebtn"
         ><span class="bars"></span> <span class="bars"></span>
@@ -24,6 +26,12 @@
         </ul>
       </div>
     </nav>
+    <div class="header-wrap"><div class="meals-list"></div></div>
+    <div class="popUpWrap"></div>
+    <script type="module" src="../src/components/likeCounter.js"></script>
+    <script type="module" src="../src/components/popUpCard.js"></script>
+    <script type="module" src="../src/components/api.js"></script>
+    <script type="module" src="../src/components/displayMeals.js"></script>
     <script type="module" src="../src/components/navHnadler.js"></script>
     <script type="module" src="index.js"></script>
   </body>

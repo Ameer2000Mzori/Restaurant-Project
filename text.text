@@ -1,0 +1,28 @@
+    //     popUpMeal.innerHTML = `
+    //     <div class="popUpCard">
+    //     <div class="cardWrap">
+    //       <button class="upCloseBtn">X</button>
+    //       <img class="popUpImg" src="/asset/kebabimg.jpg" alt="" />
+    //       <h3 class="popUpTitle">PLANE</h3>
+    //       <div class="mealIfo">
+    //         <div class="orginInfo">
+    //           <div class="textInfo">USA</div>
+    //           <div class="textInfo">USA</div>
+    //         </div>
+    //         <div class="orginInfo">
+    //           <div class="textInfo">USA</div>
+    //           <div class="textInfo">USA</div>
+    //         </div>
+    //       </div>
+    //       <h3 class="commentsh3">Comments</h3>
+    //       <div class="commentWrap">
+    //         <div class="comments">WE LIKE IT</div>
+    //       </div>
+    //       <div class="addCommentWrap">
+    //         <h5>ADD A COMMENT</h5>
+    //         <input type="text" />
+    //         <textarea name="" id="" cols="20" rows="1"></textarea>
+    //         <button class="commentBtnCom">COMMENT</button>
+    //       </div>
+    //     </div>
+    //   </div>`;

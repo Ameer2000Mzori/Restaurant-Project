@@ -1,0 +1,98 @@
+// import fetch from 'node-fetch';
+import popUpCardFunc from './popUpCard.js';
+import { mealDb }  from './api.js';
+
+
+// Function to fetch meals starting with 'a' from the API
+const fetchMealData = async () => {
+    try {
+        const res = await fetch(mealDb);
+        if (!res.ok) {
+            throw new Error(`Failed to fetch data. Status: ${res.status}`);
+        } 
+        const { meals } = await res.json();
+        return meals;
+    } catch (error) {
+        throw new Error(`Error fetching data: ${error.message}`);
+    }
+};
+
+// Function to display meal information
+const showInfoMeal = (meal) => {
+    const { idMeal, strMeal, strMealThumb, strArea, strCategory, strTags, strYoutube} = meal;
+
+
+    const mealsList = document.getElementsByClassName("meals-list")[0];
+    const div = document.createElement("div");
+    div.classList = "meal-card";
+
+    const img = document.createElement("img");
+    img.classList = "meal-img";
+    img.src = strMealThumb;
+    div.appendChild(img);
+
+    const titleWrap = document.createElement("div");
+    titleWrap.classList = "meal-titles";
+
+    const titleDiv = document.createElement("div");
+    titleDiv.classList = "meal-title";
+    titleDiv.textContent = strMeal;
+    titleWrap.appendChild(titleDiv);
+
+    const likeBtnWrap = document.createElement("div");
+    likeBtnWrap.classList = "like-btn-wrap";
+    titleWrap.appendChild(likeBtnWrap);
+
+    const likeImgWrap = document.createElement("div");
+    likeImgWrap.classList = "likes";
+    likeBtnWrap.appendChild(likeImgWrap);
+
+    const likeImg = document.createElement("p");
+    likeImg.classList = "meal-like";
+    likeImg.id ='likeImgId';
+    console.log(likeImg.id);
+    likeImg.textContent = "❤️"; 
+    likeImgWrap.appendChild(likeImg);
+    
+    likeImg.addEventListener('click', ()=>{
+        console.log('hallo world')
+    })
+
+    const likeCounter = document.createElement("div");
+    likeCounter.classList = "like-counter";
+    likeCounter.textContent = `0`;
+    likeBtnWrap.appendChild(likeCounter);
+
+    const commentBtn = document.createElement("button");
+    commentBtn.classList = "comment-btn";
+    commentBtn.textContent = "COMMENT";
+    
+    commentBtn.dataset.mealId = idMeal; 
+    commentBtn.addEventListener("click", () => {
+        const mealId = commentBtn.dataset.mealId;
+        popUpCardFunc(mealId, strMeal, strArea, strMealThumb, strCategory, strTags, strYoutube);
+    });
+    
+    const buttonsWrap = document.createElement("div");
+    buttonsWrap.classList = "button-wrap";
+    buttonsWrap.appendChild(commentBtn);
+
+    div.appendChild(titleWrap);
+    mealsList.appendChild(div);
+    div.appendChild(buttonsWrap);
+};
+
+// Call the function to fetch meals and display them
+fetchMealData()
+    .then(meals => {
+        // Check if there are meals
+        if (meals) {
+            console.log(meals);
+            meals.forEach(showInfoMeal);
+        } else {
+            console.log("No meals found.");
+        }
+    })
+    .catch(error => {
+        console.error(error);
+    });

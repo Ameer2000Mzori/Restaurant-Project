@@ -2,13 +2,14 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    mode: "development",
+    mode: "prodoction",
     entry: {
-        bundle: path.resolve(__dirname, "src", "index.js"), // Use forward slashes for path
+        bundle: path.resolve(__dirname, "src", "index.js"),
     },
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
+        clean: true,
     },
     module: {
         rules: [
@@ -16,13 +17,30 @@ module.exports = {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader", "sass-loader"],
             },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@babel/preset-env"],
+                    },
+                },
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif)$/i,
+                type: "asset/resource",
+                generator: {
+                    filename: "assets/[name][ext]", // Output path for images
+                },
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             title: "webpack app",
-            filename: "index.html",
-            template: path.resolve(__dirname, "src", "index.html"), // Use path.resolve for template path
+            filename: "home.html",
+            template: path.resolve(__dirname, "src", "index.html"),
         }),
     ],
 };

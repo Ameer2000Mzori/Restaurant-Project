@@ -15,7 +15,7 @@ body {
   justify-content: space-evenly;
   text-align: center;
   align-items: center;
-  background-color: rgb(37, 33, 33);
+  background-color: rgb(240, 159, 67);
   filter: drop-shadow(0 0 0.75rem rgb(34, 33, 33));
 }
 
@@ -37,19 +37,19 @@ body {
 
 .navlinks ul li a {
   text-decoration: none;
-  color: bisque;
+  color: rgb(255, 255, 255);
 }
 
 .navlinks ul li a:hover {
   position: relative;
   bottom: 2px;
   text-decoration: none;
-  color: rgb(255, 152, 27);
+  color: rgb(250, 250, 125);
 }
 
 .navlinks ul li a:active {
   text-decoration: none;
-  color: rgb(228, 228, 228);
+  color: rgb(255, 255, 255);
 }
 
 .togglebtn {
@@ -64,7 +64,7 @@ body {
 }
 
 .togglebtn .bars {
-  background-color: beige;
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
   width: 100%;
   height: 3px;

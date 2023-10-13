@@ -1,0 +1,2 @@
+export const mealDb = "https://www.themealdb.com/api/json/v1/1/search.php?f=a"; 
+export const likeDb = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/ggHb7kPC8mT4gIXCMwLx/likes/';
