@@ -1,22 +1,38 @@
 import { likeDb } from './api.js';
 
 const addLike = async (id, numLikes) => {
-  fetch(likeDb, {
-    method: 'POST',
-    body: JSON.stringify({
-      item_id: id,
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  });
+  try {
+    // Step 1: Send a POST request to add a like
+    const response = await fetch(likeDb, {
+      method: 'POST',
+      body: JSON.stringify({ item_id: id }),
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    });
 
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (!response.ok) {
+      throw new Error('Failed to add like');
+    }
 
-  const responseLikes = await fetch(likeDb);
-  const dataLikes = await responseLikes.json();
+    // Step 2: Wait for 1 second
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  const likedItem = dataLikes.find((like) => like.item_id === id);
-  numLikes.innerText = `${likedItem.likes} Likes` || '0 Likes';
+    // Step 3: Fetch the updated like count
+    const updatedLikesResponse = await fetch(likeDb);
+
+    if (!updatedLikesResponse.ok) {
+      throw new Error('Failed to fetch like count');
+    }
+
+    const dataLikes = await updatedLikesResponse.json();
+
+    // Step 4: Find the liked item and update the UI
+    const likedItem = dataLikes.find((like) => like.item_id === id);
+    numLikes.innerText = `${likedItem.likes} Likes` || '0 Likes';
+  } catch (error) {
+    console.error('Error:', error);
+  }
 };
+
 export default addLike;

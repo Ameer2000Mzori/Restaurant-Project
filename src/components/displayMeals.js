@@ -8,6 +8,7 @@ const mealsList = document.getElementsByClassName("meals-list")[0];
 const displayMeals = async () => {
     const response = await fetch(mealDb)
     const data = await response.json()
+    console.log(data);
 
   const responseLikes = await fetch(likeDb);
   const dataLikes = await responseLikes.json();
@@ -63,8 +64,8 @@ data.meals.forEach((item) => {
     commentBtn.textContent = "COMMENT";
     
     commentBtn.addEventListener("click", () => {
-       console.log('hi world')
-        popUpCardFunc( item.strMeal, item.strArea, item.strMealThumb, item.strCategory, item.strTags, item.strYoutube);
+       console.log('hi world');
+        popUpCardFunc( item.idMeal);
     });
     
     const buttonsWrap = document.createElement("div");

@@ -1,124 +1,152 @@
-const popUpCardFunc = ( strMeal, strArea, strMealThumb, strCategory, strTags, strYoutube) => {
+import  { mealDb, commentDb }   from './api.js';
+import '../style/popUpCard.css';
+import addComment from './addComment.js';
+import commentsCounter from './commentCounter';
 
-    const mainBody = document.querySelector('body');
-    const popUpMeal = document.getElementsByClassName('popUpWrap')[0]; 
-    mainBody.classList.add('active');
-    popUpMeal.classList.add('active');
 
-    // Check if a popUpCard already exists and remove it if it does
-    const existingPopUpCard = document.querySelector('.popUpCard');
-    if (existingPopUpCard) {
-        popUpMeal.removeChild(existingPopUpCard);
-    }
+const popUpCardFunc = async (id,idMeal) => {
+        const response = await fetch(mealDb);
+        const data = await response.json();
+        const mealSelect = data.meals.find((datas) => datas.idMeal === id);
 
-    const popUpCard = document.createElement('div');
-    popUpCard.classList = 'popUpCard';
+      const commentsApi = await fetch(`${commentDb}item_id=${mealSelect.idMeal}`);
+      const dataComment = await commentsApi.json();
 
-    const cardWrap = document.createElement('div');
-    cardWrap.classList = 'cardWrap';
-    popUpCard.appendChild(cardWrap);
+ console.log(mealSelect.idMeal);
 
-    const upCloseBtn = document.createElement('button');
-    upCloseBtn.classList = 'upCloseBtn';
-    upCloseBtn.textContent ='X';
-    cardWrap.appendChild(upCloseBtn);
+  const mainBody = document.querySelector('body');
+  const popUpMeal = document.querySelector('.popUpWrap');
+  mainBody.classList.add('active');
+  popUpMeal.classList.add('active');
 
-    const popUpImg = document.createElement('img');
-    popUpImg.src = strMealThumb;
-    popUpImg.classList = 'popUpImg';
-    cardWrap.appendChild(popUpImg);
+  // Check if a popUpCard already exists and remove it if it does
+  const existingPopUpCard = document.querySelector('.popUpCard');
+  if (existingPopUpCard) {
+    popUpMeal.removeChild(existingPopUpCard);
+  }
 
-    const popUpTitle = document.createElement('h3');
-    popUpTitle.textContent = strMeal;
-    cardWrap.appendChild(popUpTitle);
+  const popUpCard = document.createElement('div');
+  popUpCard.className = 'popUpCard';
 
-    const mealIfo = document.createElement('div');
-    mealIfo.classList = 'mealIfo';
-    cardWrap.appendChild(mealIfo);
+  const cardWrap = document.createElement('div');
+  cardWrap.className = 'cardWrap';
+  popUpCard.appendChild(cardWrap);
 
-    const orginInfo = document.createElement('div');
-    orginInfo.classList = 'orginInfo';
-    mealIfo.appendChild(orginInfo);
+  const upCloseBtn = document.createElement('button');
+  upCloseBtn.className = 'upCloseBtn';
+  upCloseBtn.textContent = 'X';
+  cardWrap.appendChild(upCloseBtn);
 
-    const textInfOne = document.createElement('div');
-    textInfOne.classList = 'textInfo';
-    textInfOne.textContent = `from : ${strArea}`;
-    orginInfo.appendChild(textInfOne);
+  const popUpImg = document.createElement('img');
+  popUpImg.src = mealSelect.strMealThumb;
+  popUpImg.className = 'popUpImg';
+  cardWrap.appendChild(popUpImg);
 
-    const textInfoTwo = document.createElement('div');
-    textInfoTwo.classList = 'textInfo';
-    textInfoTwo.textContent = `Category : ${strCategory}`;
-    orginInfo.appendChild(textInfoTwo);
+  const popUpTitle = document.createElement('h3');
+  popUpTitle.textContent = mealSelect.strMeal;
+  cardWrap.appendChild(popUpTitle);
 
-    const orginInfoTwo = document.createElement('div');
-    orginInfoTwo.classList = 'orginInfo';
-    mealIfo.appendChild(orginInfoTwo);
+  const mealInfo = document.createElement('div');
+  mealInfo.className = 'mealInfo';
+  cardWrap.appendChild(mealInfo);
 
-    const textInfThree = document.createElement('div');
-    textInfThree.classList = 'textInfo';
-    if(strTags === null){
-    textInfThree.textContent = `Tags : N/A`;
-    }else{
-    textInfThree.textContent = `Tags : ${strTags}`;
-    }
-    orginInfoTwo.appendChild(textInfThree);
+  const originInfo = document.createElement('div');
+  originInfo.className = 'originInfo';
+  mealInfo.appendChild(originInfo);
 
-    const textInfoFour = document.createElement('a');
-    textInfoFour.classList = 'textInfo';
-    textInfoFour.textContent='Watch here video';
-    textInfoFour.href =  `${strYoutube}`;
-    orginInfoTwo.appendChild(textInfoFour);
+  const createTextInfo = (text, value) => {
+    const textInfo = document.createElement('div');
+    textInfo.className = 'textInfo';
+    textInfo.textContent = `${text} : ${value || 'N/A'}`;
+    return textInfo;
+  };
 
-    const commentsh3 = document.createElement('h3');
-    commentsh3.textContent = 'COMMENTS';
-    commentsh3.classList = 'commentsh3';
-    cardWrap.appendChild(commentsh3);
+  originInfo.appendChild(createTextInfo('From', mealSelect.strArea));
+  originInfo.appendChild(createTextInfo('Category', mealSelect.strCategory));
 
-    const commentWrap = document.createElement('div');
-    commentWrap.classList = 'commentWrap';
-    cardWrap.appendChild(commentWrap);
+  const originInfoTwo = document.createElement('div');
+  originInfoTwo.className = 'originInfo';
+  mealInfo.appendChild(originInfoTwo);
 
-    const comments = document.createElement('div');
-    comments.classList = 'comments';
-    comments.textContent = 'WE LIKE IT ';
-    commentWrap.appendChild(comments);
+  originInfoTwo.appendChild(createTextInfo('Tags', mealSelect.strTags));
+  
+  const textInfoFour = document.createElement('a');
+  textInfoFour.className = 'textInfo';
+  textInfoFour.textContent = 'Watch here video';
+  textInfoFour.href = mealSelect.strYoutube;
+  originInfoTwo.appendChild(textInfoFour);
 
-    const addCommentWrap = document.createElement('div');
-    addCommentWrap.classList = 'addCommentWrap';
-    cardWrap.appendChild(addCommentWrap);
+  const commentsh3 = document.createElement('h3');
+  commentsh3.textContent = 'COMMENTS';
+  commentsh3.className = 'commentsh3';
+  cardWrap.appendChild(commentsh3);
 
-    const addCommentH5 = document.createElement('h5');
-    addCommentH5.textContent = 'ADD A COMMENT';
-    addCommentWrap.appendChild(addCommentH5);
+  const commentWrap = document.createElement('div');
+  commentWrap.className = 'commentWrap';
+  cardWrap.appendChild(commentWrap);
 
-    const inputText = document.createElement('input');
-    inputText.type = 'text';
-    inputText.placeholder ='please enter your name';
-    addCommentWrap.appendChild(inputText);
 
-    const textarea = document.createElement('textarea');
-    textarea.classList = 'textarea';
-    textarea.placeholder = 'add your comment';
-    textarea.cols = '20';
-    textarea.rows = '5';
-    addCommentWrap.appendChild(textarea);     
+  if(dataComment && dataComment.length > 0 ){
+    dataComment.forEach((item) =>{
+        const comments = document.createElement('div');
+        comments.className = 'comments';
+        comments.innerHTML = `${item.creation_date} ${item.username} ${item.comment}`;
+        commentWrap.appendChild(comments);
 
-    const commentBtnCom = document.createElement('button');
-    commentBtnCom.classList ='commentBtnCom';
-    commentBtnCom.textContent ='COMMENT';
-    addCommentWrap.appendChild(commentBtnCom);
-
-    popUpMeal.appendChild(popUpCard);
-
-    upCloseBtn.addEventListener('click', () => {
-        mainBody.classList.remove('active');
-        popUpMeal.classList.remove('active');
-        // Remove the popUpCard element when the close button is clicked
-        popUpMeal.removeChild(popUpCard);
     });
+  }
+
+  const addCommentWrap = document.createElement('div');
+  addCommentWrap.className = 'addCommentWrap';
+  cardWrap.appendChild(addCommentWrap);
+
+  const addCommentH5 = document.createElement('h5');
+  addCommentH5.textContent = 'ADD A COMMENT';
+  addCommentWrap.appendChild(addCommentH5);
+
+  const createInput = (type, placeholder) => {
+    const input = document.createElement('input');
+    input.type = type;
+    input.placeholder = placeholder;
+    return input;
+  };
+
+  const inputText = createInput('text', 'Please enter your name');
+  addCommentWrap.appendChild(inputText);
+
+  const textarea = document.createElement('textarea');
+  textarea.className = 'textarea';
+  textarea.placeholder = 'Add your comment';
+  textarea.cols = '20';
+  textarea.rows = '5';
+  addCommentWrap.appendChild(textarea);
+
+  const commentBtnCom = document.createElement('button');
+  commentBtnCom.className = 'commentBtnCom';
+  commentBtnCom.textContent = 'COMMENT';
+  addCommentWrap.appendChild(commentBtnCom);
+
+  commentBtnCom.addEventListener('click', () => {
+    const inputTextValue = inputText.value.toLowerCase();
+    const textareaValue = textarea.value.toLowerCase();
+    if (!inputTextValue || !textareaValue) {
+      console.log('Please enter name and comment');
+    } else {
+      addComment(id, inputTextValue, textareaValue);
+    }
+    inputText.value = '';
+    textarea.value = '';
+  });
+
+  popUpMeal.appendChild(popUpCard);
+
+  upCloseBtn.addEventListener('click', () => {
+    mainBody.classList.remove('active');
+    popUpMeal.classList.remove('active');
+    // Remove the popUpCard element when the close button is clicked
+    popUpMeal.removeChild(popUpCard);
+  });
+  commentsCounter();
 };
-
-
-
 
 export default popUpCardFunc;
