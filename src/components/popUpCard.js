@@ -90,7 +90,7 @@ const popUpCardFunc = async (id,idMeal) => {
     dataComment.forEach((item) =>{
         const comments = document.createElement('div');
         comments.className = 'comments';
-        comments.innerHTML = `${item.creation_date} ${item.username} ${item.comment}`;
+        comments.innerHTML = `${item.creation_date}: ${item.comment} by ${item.username}`;
         commentWrap.appendChild(comments);
 
     });

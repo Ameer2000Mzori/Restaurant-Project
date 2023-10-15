@@ -121,3 +121,9 @@
   height: 35px;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .meals-list {
+    padding: 20% 10%;
+  }
+}

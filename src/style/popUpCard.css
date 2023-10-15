@@ -161,3 +161,22 @@ textarea {
   background-color: rgb(241, 179, 98);
   outline: 1px solid rgba(212, 212, 212, 0.918);
 }
+
+@media (max-width: 768px) {
+  .cardWrap {
+    height: 500px;
+    width: 300px;
+  }
+  .popUpImg {
+    height: 300px;
+    width: 300px;
+  }
+  .upCloseBtn {
+    top: 1.5rem;
+    right: 1rem;
+  }
+  .comments {
+    font-size: 12px;
+    font-weight: 200px;
+  }
+}

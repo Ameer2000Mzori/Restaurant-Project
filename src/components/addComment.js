@@ -35,7 +35,7 @@ const addComment = async (id, user, userComment) => {
     dataComments.forEach((item) => {
       const comments = document.createElement('div');
       comments.classList = 'comments';
-      comments.innerHTML = `${item.creation_date} ${item.username} ${item.comment}`;
+      comments.innerHTML = `${item.creation_date}: ${item.comment} by ${item.username}`;
       addCommentWrap.appendChild(comments);
     });
 
