@@ -100,3 +100,26 @@ body {
     display: block;
   }
 }
+
+.footer {
+  display: flex;
+  padding: 2%;
+  text-align: start;
+  align-items: start;
+  background-color: rgb(0, 0, 0);
+  color: wheat;
+}
+
+.footer-text {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 5%;
+  }
+
+  .footer-text {
+    font-size: 11px;
+  }
+}
