@@ -54,7 +54,7 @@
 
 > Add a link to your deployed project.
 
-- [Live Demo Link](https://ameer2000mzori.github.io/resturant/dist)
+- [Live Demo Link](https://github.com/Ameer2000Mzori/Resturant/dist/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
