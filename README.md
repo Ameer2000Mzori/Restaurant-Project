@@ -16,9 +16,14 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 My Portafolio <a name="about-project"></a>
+# 📖 About This Project <a name="about-project"></a>
 
-> This is capstone website of week 2 of microverse, made with HTML, CSS, and JavaScript. and it's a multi-page responsive website. it's a whole website made for desktop and mobile versions.
+> The Restaurant-Project is a website developed with HTML, CSS, and JavaScript, utilizing Webpack for building and incorporating listeners for clean code and error handling. This project seamlessly integrates three APIs for commenting, likes, and data display. Feel free to explore the live demo to experience its functionality.
+
+# Sample Of Website <a name="Sample-Of-Website"></a>
+
+![alt text](./sample/1.png)
+![alt text](./sample/2.png)
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -27,13 +32,12 @@
 <details>
   <summary>Client</summary>
   <ul>
-        <li><a href="https://en.wikipedia.org/wiki/HTML">Html</a></li>
-        <li><a href="https://en.wikipedia.org/wiki/CSS">Css</a></li>
-        <li><a href="https://nl.wikipedia.org/wiki/JavaScript">Javascript</a></li>
-        <li><a href="https://webpack.js.org/">WebPack</a></li>
-        <li><a href="https://eslint.org/">Eslint</a></li>
-        <li><a href="https://webpack.js.org/">notionapi</a></li>
-    
+  <li><a href="https://en.wikipedia.org/wiki/HTML">Html</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/CSS">Css</a></li>
+  <li><a href="https://en.wikipedia.org/wiki/JavaScript">Javascript</a></li>
+  <li><a href="https://stylelint.io/">Html/CSS Linters</a></li>
+  <li><a href="https://eslint.org/">eslinters/TsLinters</a></li>
+    <li><a href="https://webpack.js.org/">Web Pack</a></li>
   </ul>
 </details>
 
@@ -41,10 +45,11 @@
 
 ### Key Features <a name="key-features"></a>
 
-- **[multi-page responsive website]**
-- **[flex & grid]**
-- **[use of api]**
-- **[wbpack ]**
+- **[Responsive Website]**
+- **[Flex & Grid]**
+- **[CSS ]**
+- **[JS ]**
+- **[Linters ]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -54,7 +59,7 @@
 
 > Add a link to your deployed project.
 
-- [Live Demo Link](https://ameer2000mzori.github.io/resturant-capstone/dist/home.html)
+- [Live Demo Link](https://ameer2000mzori.github.io/Restaurant-Project/dist/home.html)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -90,8 +95,6 @@ If you like this project, don't hesitate to give it a star 😊.
 <!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
-
-I would like to thank Microverse team for the resources.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
